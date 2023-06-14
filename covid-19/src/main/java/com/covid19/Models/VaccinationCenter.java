@@ -13,9 +13,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Entity
-//@Data             
+@Data             
 //Generate all getter setter+constructor +to string automatically.(Not Working);
 public class VaccinationCenter {
 	
