@@ -1,9 +1,6 @@
 package com.covid19.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -26,4 +23,8 @@ public class Member {
 	@Size(min=6, max=20)
 	@NotEmpty(message = "ConfirmPassword cannot be empty")
 	private String confirmPassword;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private VaccineRegistration vaccineRegistration;
+
 }

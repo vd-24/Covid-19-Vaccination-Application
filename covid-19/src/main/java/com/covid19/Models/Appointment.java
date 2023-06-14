@@ -1,6 +1,6 @@
 package com.covid19.Models;
 
-import java.lang.reflect.Member;
+
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

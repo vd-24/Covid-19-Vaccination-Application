@@ -1,6 +1,6 @@
 package com.covid19.Models;
 
-import java.lang.reflect.Member;
+
 import java.time.LocalDate;
 
 import com.covid19.Enums.Gender;
