@@ -4,14 +4,17 @@ package com.covid19.Models;
 import java.time.LocalDate;
 
 import com.covid19.Enums.Gender;
+import com.covid19.Enums.Role;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
@@ -28,6 +31,17 @@ public class IdCard {
 	@Size(min = 3, max = 20, message = "Name length should be of size 3-20")
 	private String Name;
 	
+	@Email
+	@NotEmpty(message = "Email cannot be empty")
+	private String email;
+	
+	@Size(min=6, max=20)
+	@NotEmpty(message = "Password cannot be empty")
+	private String password;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+		
 	@Past
 	private LocalDate DateOfBirth ;
 	
@@ -42,17 +56,31 @@ public class IdCard {
 	@Size(min = 2, max = 30 , message = "City length should be of size 3-20")
 	private String city ;
 	
+	@NotEmpty(message =  "Pincode is mandatory")
+	@Size(min = 5, max = 6 , message = "Pincode length should be of size 5-6")
+	private String pincode ;
+	
 	@NotEmpty(message =  "State is mandatory")
 	@Size(min = 2, max = 30 , message = "State length should be of size 3-20")
 	private String State ;
 	
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private PanCard panCard;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private AdharCard adharCard;
-	
-
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Member member;
 }
+
+
+
+
+
+
+
+
+
+

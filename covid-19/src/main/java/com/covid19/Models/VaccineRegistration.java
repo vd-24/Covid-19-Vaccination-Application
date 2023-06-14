@@ -13,13 +13,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class VaccineRegistration {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
     private Integer regId;
 	
 	private String mobileno;
@@ -30,4 +35,6 @@ public class VaccineRegistration {
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "vaccineRegistration",fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Member> members = new ArrayList<>();
+	
+	
 }
