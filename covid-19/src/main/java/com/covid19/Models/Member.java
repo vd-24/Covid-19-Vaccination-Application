@@ -1,5 +1,7 @@
 package com.covid19.Models;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -12,18 +14,32 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memberId;
 	
-	@Email
-	@NotEmpty(message = "Email cannot be empty")
-	private String email;
+	private boolean dose1;
 	
-	@Size(min=6, max=20)
-	@NotEmpty(message = "Password cannot be empty")
-	private String password;
+	private boolean dose2;
 	
-	@Size(min=6, max=20)
-	@NotEmpty(message = "ConfirmPassword cannot be empty")
-	private String confirmPassword;
-
+	private LocalDate dose1date;
+	
+	private LocalDate dose2date;
+//	@Email
+//	@NotEmpty(message = "Email cannot be empty")
+//	private String email;
+//	
+//	@Size(min=6, max=20)
+//	@NotEmpty(message = "Password cannot be empty")
+//	private String password;
+	
+//	private 
+//	@Size(min=6, max=20)
+//	@NotEmpty(message = "ConfirmPassword cannot be empty")
+//	private String confirmPassword;
+	
+	@OneToOne(mappedBy = "member" , cascade = CascadeType.ALL)
+	private Vaccine vaccine;
+	
+	@OneToOne(mappedBy = "member" , cascade = CascadeType.ALL)
+	private IdCard idcard;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private VaccineRegistration vaccineRegistration;
 

@@ -9,19 +9,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class VaccineCount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer countid;
-	@OneToOne
+	
+	private double price;
+	private Integer quantity;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private Vaccine vaccine;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnore   // @JsonIgnoreProperties ignores the specified logical properties in JSON serialization and deserialization
+	@JsonIgnore   
 	private VaccineInventory inventory;
 	
-	private Integer inId;
 	
-	private Integer quantity;
 }

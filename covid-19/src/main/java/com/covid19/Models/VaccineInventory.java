@@ -1,7 +1,7 @@
 package com.covid19.Models;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,10 +24,12 @@ public class VaccineInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer inventoryId;
+    
 	private LocalDate date;
+	
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "inventory",fetch = FetchType.EAGER)
 	@JsonIgnore
-	private Set<VaccineCount> vaccineCount;
+	private List<VaccineCount> vaccineCount;
 	
 	
 	

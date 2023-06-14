@@ -1,7 +1,5 @@
 package com.covid19.Models;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -10,34 +8,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-//@Data             
-//Generate all getter setter+constructor +to string automatically.(Not Working);
+@Data             
+@NoArgsConstructor
+@AllArgsConstructor
 public class VaccinationCenter {
-	
-	
 	@Id           
 	@GeneratedValue(strategy = GenerationType.AUTO)   
 	private Integer centerCode;
 	
-	
 	private String name;
-	
-
 	private String address;
+	private String city;
+	private String state;
+	private String pincode;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)   
-	// One Vaccination center can have only one Inventory.
-  @NotNull
+	@NotNull
 	private VaccineInventory inventory;
 	
-	
-	@OneToMany    
-	//// One Vaccination center can have many Appointment.
+	@OneToOne
 	@JsonIgnore
-	List<Appointment> appointments = new ArrayList<>();
+	private Appointment appointment;
 }
