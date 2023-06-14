@@ -1,9 +1,6 @@
 package com.covid19.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Vaccine {
@@ -13,4 +10,9 @@ public class Vaccine {
 	private Integer vaccineId;
 	private String vaccineName;
 	private String description;
+
+	@OneToOne(mappedBy = "vaccine_Id",cascade = CascadeType.ALL)
+	@JoinTable(name = "Vaccine Id")
+	private Member member;
+
 }
