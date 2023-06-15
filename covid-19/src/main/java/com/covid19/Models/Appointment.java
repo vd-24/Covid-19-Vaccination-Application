@@ -15,8 +15,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
+import lombok.Data;
 
 @Entity
+@Data
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
