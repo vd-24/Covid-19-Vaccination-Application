@@ -29,8 +29,8 @@ public class Appointment {
 	private boolean bookingStatus = false;
 	
 	
-	@Enumerated(EnumType.STRING)
-	private Slot slot;
+//	@Enumerated(EnumType.STRING)
+	private String slot;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Member member;
