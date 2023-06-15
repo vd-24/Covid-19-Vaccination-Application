@@ -1,6 +1,8 @@
 package com.covid19.Services;
 
+import com.covid19.Models.IdCard;
 import com.covid19.Models.Member;
+import com.covid19.Repository.IdCardRepository;
 import com.covid19.Repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,31 +11,33 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class IdCardServiceImpl implements IdCardService {
 
     @Autowired
-    MemberRepository memberRepository;
+    IdCardRepository idCardRepository;
 
 
     @Override
-    public Member registerNewMember(Member member) {
+    public IdCard registerNewMember(IdCard member) {
 
-       Member member1 =  memberRepository.save(member);
+       IdCard member1 =  idCardRepository.save(member);
         return member1;
     }
 
-    @Override
-    public List<Member> getAllMembers() {
 
-        List<Member> members = memberRepository.findAll();
+
+    @Override
+    public List<IdCard> getAllMembers() {
+
+        List<IdCard> members = idCardRepository.findAll();
 
         return members;
     }
 
     @Override
-    public Member getMemberByEmail(String email) {
+    public IdCard getMemberByEmail(String email) {
 
-        Optional<Member> member = memberRepository.findByEmail(email);
+        Optional<IdCard> member = idCardRepository.findByEmail(email);
         return member.get();
     }
 }

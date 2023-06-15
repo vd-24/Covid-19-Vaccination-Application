@@ -1,18 +1,4 @@
-package com.masai.security;
-
-import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.crypto.SecretKey;
-
-import com.masai.security.SecurityConstrants;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.filter.OncePerRequestFilter;
+package com.covid19.Security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -20,6 +6,17 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import javax.crypto.SecretKey;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
@@ -40,7 +37,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
 
             String jwt = Jwts.builder()
-                    .setIssuer("Ram")
+                    .setIssuer("Swapnil")
                     .setSubject("JWT Token")
                     .claim("username", authentication.getName())
                     .claim("authorities", populateAuthorities(authentication.getAuthorities()))
@@ -66,21 +63,10 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
 
     }
-
-    private String getRole(Collection<? extends GrantedAuthority> collection) {
-
-        String role="";
-        for(GrantedAuthority ga:collection) {
-            role= ga.getAuthority();
-        }
-
-        return role;
-    }
-
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 
-        return !request.getServletPath().equals("/swiggy/customer/signIn");
+        return !request.getServletPath().equals("/admin/signIn");
     }
 
 }

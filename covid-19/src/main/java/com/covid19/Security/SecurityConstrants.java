@@ -1,4 +1,4 @@
-package com.masai.security;
+package com.covid19.Security;
 
 public interface SecurityConstrants {
     public static final String JWT_KEY ="secretsfhsfjhdkjngdfjkgfgjdlkfjsdkfjsd";

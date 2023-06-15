@@ -19,12 +19,18 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class IdCard {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
 	
 	@NotEmpty(message = "Name is mandatory")
@@ -35,8 +41,8 @@ public class IdCard {
 	@NotEmpty(message = "Email cannot be empty")
 	private String email;
 	
-	@Size(min=6, max=20)
-	@NotEmpty(message = "Password cannot be empty")
+//	@Size(min=6, max=20)
+//	@NotEmpty(message = "Password cannot be empty")
 	private String password;
 	
 	@Enumerated(EnumType.STRING)

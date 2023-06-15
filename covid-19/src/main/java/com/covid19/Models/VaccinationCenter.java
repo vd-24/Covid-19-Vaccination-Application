@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VaccinationCenter {
 	@Id           
-	@GeneratedValue(strategy = GenerationType.AUTO)   
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer centerCode;
 	
 	private String name;
@@ -34,7 +34,6 @@ public class VaccinationCenter {
 	@NotNull
 	private VaccineInventory inventory;
 	
-	@OneToOne
-	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
 	private Appointment appointment;
 }
