@@ -16,11 +16,14 @@ public class IdCardServiceImpl implements IdCardService {
     @Autowired
     IdCardRepository idCardRepository;
 
+    @Autowired
+    MemberRepository memberRepository;
 
     @Override
     public IdCard registerNewMember(IdCard member) {
-
+        memberRepository.save(member.getMember());
        IdCard member1 =  idCardRepository.save(member);
+
         return member1;
     }
 

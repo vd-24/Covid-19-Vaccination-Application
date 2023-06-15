@@ -27,6 +27,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (authentication != null) {
 
 
