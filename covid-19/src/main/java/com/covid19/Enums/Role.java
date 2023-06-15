@@ -1,5 +1,6 @@
 package com.covid19.Enums;
 
 public enum Role {
-	MEMBER, ADMIN
+	ROLE_MEMBER,
+	ROLE_ADMIN
 }
