@@ -15,10 +15,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.FutureOrPresent;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +32,17 @@ public class Appointment {
 	private String mobileNo;
 	
 	@FutureOrPresent
-	private LocalDate dateOfBooking; 
+	private LocalDate dateOfBooking;
+
 	private boolean bookingStatus = false;
 	
 	
 //	@Enumerated(EnumType.STRING)
 	private String slot;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "appointment",cascade = CascadeType.ALL)
 	private Member member;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
+	@OneToOne( mappedBy = "appointment",cascade = CascadeType.ALL)
 	private VaccinationCenter vaccinationCenter;
 }

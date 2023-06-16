@@ -6,8 +6,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Member {
 	
 	@Id
@@ -21,25 +27,16 @@ public class Member {
 	private LocalDate dose1date;
 	
 	private LocalDate dose2date;
-//	@Email
-//	@NotEmpty(message = "Email cannot be empty")
-//	private String email;
-//	
-//	@Size(min=6, max=20)
-//	@NotEmpty(message = "Password cannot be empty")
-//	private String password;
-	
-//	private 
-//	@Size(min=6, max=20)
-//	@NotEmpty(message = "ConfirmPassword cannot be empty")
-//	private String confirmPassword;
 	
 	@OneToOne(mappedBy = "member" , cascade = CascadeType.ALL)
 	private Vaccine vaccine;
 	
 	@OneToOne(mappedBy = "member" , cascade = CascadeType.ALL)
 	private IdCard idcard;
-	
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Appointment appointment;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	private VaccineRegistration vaccineRegistration;
 
