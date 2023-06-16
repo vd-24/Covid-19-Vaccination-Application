@@ -13,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(VaccineRegistrationException.class)
-	public ResponseEntity<MyErrorDetails> somethingWentWrongExceptionHandler(VaccineRegistrationException ce, WebRequest req){
+	public ResponseEntity<MyErrorDetails> VaccineRegistrationExceptionHandler(VaccineRegistrationException ce, WebRequest req){
 				
 		MyErrorDetails err= new MyErrorDetails();
 			err.setTimestamp(LocalDateTime.now());
