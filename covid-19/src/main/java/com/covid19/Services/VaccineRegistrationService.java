@@ -12,7 +12,7 @@ public interface VaccineRegistrationService {
 	public List<Member> getAllMember(String mobileNumber);
 	public VaccineRegistration addVaccineRegistration(VaccineRegistration vaccineRegistration);
 	public VaccineRegistration updateVaccineRegistration(VaccineRegistration vaccineRegistration);
-	public boolean deleteVaccineRegistration(VaccineRegistration vaccineRegistration);
+	public boolean deleteVaccineRegistration(Integer registrationNo);
 	
 	
 }

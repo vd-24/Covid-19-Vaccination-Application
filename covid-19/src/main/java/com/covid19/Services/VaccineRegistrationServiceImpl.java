@@ -1,13 +1,17 @@
 package com.covid19.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.covid19.Exception.VaccineRegistrationException;
 import com.covid19.Models.Member;
 import com.covid19.Models.VaccineRegistration;
 import com.covid19.Repository.VaccineRegistrationRepository;
 
+@Repository
 public class VaccineRegistrationServiceImpl implements VaccineRegistrationService {
 	
 	private final VaccineRegistrationRepository vaccineRegistrationRepository;
@@ -47,7 +51,10 @@ public class VaccineRegistrationServiceImpl implements VaccineRegistrationServic
 	}
 
 	@Override
-	public boolean deleteVaccineRegistration(VaccineRegistration vaccineRegistration) {
+	public boolean deleteVaccineRegistration(Integer id) {
+		Optional<VaccineRegistration> opt = vaccineRegistrationRepository.findById(id);
+		VaccineRegistration vaccineRegistration = opt.get();
+		if(vaccineRegistration == null) throw new VaccineRegistrationException("No Vaccine Registration Present of this Id");
 		vaccineRegistrationRepository.delete(vaccineRegistration);
 		return true;
 	}

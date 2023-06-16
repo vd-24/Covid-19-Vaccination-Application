@@ -21,9 +21,6 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public IdCard findMemberById(Integer id) throws MemberException {
-
-
-
         Optional<IdCard> idCard = idCardRepository.findById(id);
 
         if(idCard.isPresent()){

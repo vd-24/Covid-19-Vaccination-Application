@@ -27,7 +27,7 @@ public class VaccineRegistration {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer regId;
 	
-	private String mobileno;
+	private String mobileNumber;
 	
 	private LocalDate dateofregistration;
 	

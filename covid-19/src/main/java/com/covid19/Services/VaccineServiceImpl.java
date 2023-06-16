@@ -1,5 +1,7 @@
 package com.covid19.Services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +26,8 @@ public class VaccineServiceImpl implements VaccineService {
         return null;
     }
 
-    public boolean deleteVaccine(Vaccine vaccine) {
-        Vaccine existingVaccine = vaccineRepository.findById(vaccine.getVaccineId()).orElse(null);
+    public boolean deleteVaccine(Integer vaccineId) {
+        Vaccine existingVaccine = vaccineRepository.findById(vaccineId).orElse(null);
         if (existingVaccine != null) {
             vaccineRepository.delete(existingVaccine);
             return true;
@@ -41,6 +43,12 @@ public class VaccineServiceImpl implements VaccineService {
     public Vaccine getVaccineByName(String vaccineName) {
         return vaccineRepository.findByName(vaccineName);
     }
+
+	@Override
+	public List<Vaccine> getAllVaccine() {
+		List<Vaccine> list = vaccineRepository.findAll();
+		return list;
+	}
 
 }
 

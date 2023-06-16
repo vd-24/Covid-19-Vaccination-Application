@@ -33,8 +33,8 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deleteVaccine(@RequestBody Vaccine vaccine) {
-        boolean deleted = vaccineService.deleteVaccine(vaccine);
+    public ResponseEntity<Void> deleteVaccine(@RequestBody Integer vaccineId) {
+        boolean deleted = vaccineService.deleteVaccine(vaccineId);
         if (deleted) {
             return ResponseEntity.noContent().build();
         } else {

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.covid19.Exception.IdCardException;
+import com.covid19.Exception.MemberException;
 import com.covid19.Models.AdharCard;
 import com.covid19.Models.IdCard;
 import com.covid19.Models.PanCard;
@@ -100,6 +101,7 @@ public class IdCardServiceImpl implements IdCardService{
 		
 		return idCardRepo.save(idCard);
 	}
-	
+
+
 
 }

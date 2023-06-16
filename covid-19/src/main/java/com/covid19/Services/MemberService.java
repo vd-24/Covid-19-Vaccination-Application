@@ -11,5 +11,6 @@ public interface MemberService {
     public IdCard findMemberByPanCard(String panNo)throws MemberException;
     public IdCard updateMember(Member member,Integer memberId)throws MemberException;
     public String deleteMember(Integer memberId)throws MemberException;
+    
 
 }
