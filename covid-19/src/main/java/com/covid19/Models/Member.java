@@ -2,6 +2,7 @@ package com.covid19.Models;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -30,9 +31,10 @@ public class Member {
 	
 	@OneToOne(mappedBy = "member" , cascade = CascadeType.ALL)
 	private Vaccine vaccine;
-	
+	@JsonIgnore
 	@OneToOne(mappedBy = "member" , cascade = CascadeType.ALL)
 	private IdCard idcard;
+
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Appointment appointment;

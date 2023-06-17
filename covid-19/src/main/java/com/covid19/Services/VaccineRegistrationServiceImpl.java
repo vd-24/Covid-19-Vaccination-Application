@@ -28,13 +28,13 @@ public class VaccineRegistrationServiceImpl implements VaccineRegistrationServic
 
 	@Override
 	public VaccineRegistration getVaccineRegistration(String mobileNumber) {
-		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileNumber(mobileNumber);
+		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileno(mobileNumber);
 		return vaccineRegistration ;
 	}
 
 	@Override
 	public List<Member> getAllMember(String mobileNumber) {
-		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileNumber(mobileNumber);
+		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileno(mobileNumber);
 		return vaccineRegistration.getMembers();
 	}
 

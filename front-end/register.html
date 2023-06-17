@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form id="registrationForm">
+        <label for="name">Name:</label></form><br>
+        <input id="name" type="text" placeholder="Enter your name" required><br>
+        
+        <label for="email">Email:</label><br>
+        <input id="email" type="email" placeholder="Enter your email" required><br>
+        
+        <label for="password">Password:</label><br>
+        <input id="password" type="password" placeholder="Enter your password" required><br>
+        
+        <label for="role">Role:</label><br>
+        <select id="role" required><br>
+            <option value="ROLE_ADMIN">Admin</option>
+            <option value="ROLE_Member">User</option>
+        </select><br>
+        
+        <label for="dateOfBirth">Date of Birth:</label><br>
+        <input id="dateOfBirth" type="date" required><br>
+        
+        <label for="gender">Gender:</label><br>
+        <select id="gender" required><br>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        
+        <label for="address">Address:</label><br>
+        <input id="address" type="text" placeholder="Enter your address" required><br>
+        
+        <label for="city">City:</label><br>
+        <input id="city" type="text" placeholder="Enter your city" required><br>
+        
+        <label for="pincode">Pincode:</label><br>
+        <input id="pincode" type="text" placeholder="Enter your pincode" required><br>
+        
+        <label for="state">State:</label><br>
+        <input id="state" type="text" placeholder="Enter your state" required><br>
+        
+        <label for="adharNo">Aadhaar Number:</label><br>
+        <input id="adharNo" type="text" placeholder="Enter your Aadhaar number" required><br>
+        
+        <label for="panNo">PAN Number:</label><br>
+        <input id="panNo" type="text" placeholder="Enter your PAN number" required><br>
+        
+        <button type="submit" onclick="myfun()">Submit</button><br>
+    </form>
+
+</body>
+</html>
+
+<script>
+
+function  myfun(){
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+    "name": document.getElementById("name").value,
+    "email": document.getElementById("email").value,
+    "password": document.getElementById("password").value,
+    "role": document.getElementById("role").value,
+    "dateOfBirth": document.getElementById("dateOfBirth").value,
+    "gender": document.getElementById("gender").value,
+    "address": document.getElementById("address").value,
+    "city": document.getElementById("city").value,
+    "pincode": document.getElementById("pincode").value,
+    "state": document.getElementById("state").value,
+    "adharCard": {
+         "adharNo": document.getElementById("adharNo").value,
+         "fingerprints": "Present",
+         "irisscan": "Present"
+     },
+     "panCard": {
+    "panNo": document.getElementById("panNo").value
+     },
+    "member": {}
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/admin/register", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    if(result != null){
+        localStorage.setItem("data",result);
+        alert("Registered Successfully")
+        window.location.href = 'signIn.html';
+    }else{
+        alert(result)
+    }
+  })
+  .catch(error => alert('error', error));
+
+}
+
+</script>

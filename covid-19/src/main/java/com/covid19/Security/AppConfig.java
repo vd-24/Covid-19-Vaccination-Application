@@ -24,9 +24,33 @@ public class AppConfig {
 
     @Bean
     public SecurityFilterChain springSecurityConfiguration(HttpSecurity http) throws Exception {
+        http.sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .cors(cors ->{
 
 
-        http.authorizeHttpRequests(auth ->{
+                    cors.configurationSource(new CorsConfigurationSource() {
+
+                        @Override
+                        public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+
+                            CorsConfiguration cfg= new CorsConfiguration();
+
+
+                            cfg.setAllowedOriginPatterns(Collections.singletonList("*"));
+                            cfg.setAllowedMethods(Collections.singletonList("*"));
+                            cfg.setAllowCredentials(true);
+                            cfg.setAllowedHeaders(Collections.singletonList("*"));
+                            cfg.setExposedHeaders(Arrays.asList("Authorization"));
+                            return cfg;
+
+
+
+                        }
+                    });
+
+
+                }).authorizeHttpRequests(auth ->{
                     auth
                             .requestMatchers("/admin/register").permitAll()
                             .requestMatchers("/admin/**").hasRole("ADMIN")
