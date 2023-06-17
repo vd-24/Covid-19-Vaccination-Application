@@ -3,7 +3,7 @@ package com.covid19.Exception;
 
 
 
-public class VaccineInventoryException extends Exception{
+public class VaccineInventoryException extends RuntimeException{
 
 	public VaccineInventoryException() {
 		super();
