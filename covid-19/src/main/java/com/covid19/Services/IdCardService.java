@@ -13,4 +13,5 @@ public interface IdCardService {
 	public IdCard getPanCardByNumber(String panNumber);
 	public IdCard getAdharCardByNo(String adharNo);
 	public IdCard addIdCard(IdCard idCard);
+//	public IdCard getMemberById(Integer id);
 }
