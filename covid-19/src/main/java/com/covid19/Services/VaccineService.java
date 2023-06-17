@@ -1,4 +1,4 @@
-package com.covid19.Service;
+package com.covid19.Services;
 
 import com.covid19.Models.Vaccine;
 
