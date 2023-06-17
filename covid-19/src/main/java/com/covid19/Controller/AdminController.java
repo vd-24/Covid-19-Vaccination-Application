@@ -215,7 +215,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/vaccine/{vaccineId}")
-	public ResponseEntity<Vaccine> getVaccineById(@PathVariable("vaccineId") Integer vaccineId){
+	public ResponseEntity<Vaccine> getVaccineById(@PathVariable Integer vaccineId){
 
 		Vaccine vaccine = vaccineService.getVaccineById(vaccineId);
 
@@ -231,7 +231,7 @@ public class AdminController {
 	}
 
 	@PutMapping("/vaccines")
-	public ResponseEntity<Vaccine> updateVaccineController(@RequestBody @Valid Vaccine vaccine) {
+	public ResponseEntity<Vaccine> updateVaccine(@RequestBody @Valid Vaccine vaccine) {
 
 		Vaccine vacc = vaccineService.updateVaccine(vaccine);
 
@@ -239,7 +239,7 @@ public class AdminController {
 	}
 
 	@DeleteMapping("/vaccines/{vaccineId}")
-	public ResponseEntity<Boolean> deleteVaccineController(@PathVariable("vaccineId") Integer vaccineId) {
+	public ResponseEntity<Boolean> deleteVaccine(@PathVariable Integer vaccineId) {
 
 		Boolean ans = vaccineService.deleteVaccine(vaccineId);
 
