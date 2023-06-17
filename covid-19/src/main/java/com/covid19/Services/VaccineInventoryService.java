@@ -8,10 +8,12 @@ import com.covid19.Models.VaccineCount;
 import com.covid19.Models.VaccineInventory;
 
 public interface VaccineInventoryService {
-	public VaccineCount addVaccineCount(Integer inId,Vaccine v,Integer qty); 
+	public VaccineInventory addVaccineCount(Integer inId,Vaccine v,Integer qty); 
 	public List<VaccineInventory> getInventoryByDate(LocalDate date);
 	public VaccineInventory addInventory(VaccineInventory inventory);
 	public VaccineInventory getInventoryByVaccinationCenter(Integer id);
 	public List<VaccineCount> getVaccineCountByCenter(Integer id);
 	public List<VaccineInventory> getAllVaccineInventories();
+	public VaccineInventory updateInventory(Integer inventoryId, VaccineInventory inventory);
+	public boolean deleteInventory(Integer id);
 }

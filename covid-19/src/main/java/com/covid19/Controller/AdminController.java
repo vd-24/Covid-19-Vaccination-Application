@@ -1,5 +1,6 @@
 package com.covid19.Controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import com.covid19.Models.IdCard;
 import com.covid19.Models.Member;
 import com.covid19.Models.VaccinationCenter;
 import com.covid19.Models.Vaccine;
+import com.covid19.Models.VaccineInventory;
 import com.covid19.Models.VaccineRegistration;
 import com.covid19.Services.AppointmentService;
 import com.covid19.Services.IdCardService;
@@ -56,8 +58,8 @@ public class AdminController {
     @Autowired
     VaccineRegistrationService vaccineRegistrationService;
     
-//    @Autowired
-//    VaccineInventoryService vaccineInventoryService;
+    @Autowired
+    VaccineInventoryService vaccineInventoryService;
     
     @Autowired
     AppointmentService appointmentService;
@@ -305,7 +307,72 @@ public class AdminController {
 	
 	// vaccine Registration methods ends
 	
-	// Appointment Method Starts here
+	
+	// Vaccine Inventory Methods Starts here
+	
+
+	@PostMapping("addVaccineInventory")
+	public ResponseEntity<VaccineInventory> addVaccineInventory(@RequestBody @Valid VaccineInventory vaccineInventory) {
+
+		VaccineInventory addedVCInventory = vaccineInventoryService.addInventory(vaccineInventory);
+
+		return new ResponseEntity<VaccineInventory>(addedVCInventory, HttpStatus.OK);
+
+	}
+
+	@GetMapping("/getInventoryByCenter/{centerid}")
+	public ResponseEntity<VaccineInventory> getVaccineInventoryByCenter(@PathVariable Integer centerid) {
+
+		VaccineInventory vaccineinventory = vaccineInventoryService.getInventoryByVaccinationCenter(centerid);
+
+		return new ResponseEntity<VaccineInventory>(vaccineinventory, HttpStatus.OK);
+	}
+
+	@PutMapping("/addVaccineCountToInventory/{count}")
+	public ResponseEntity<VaccineInventory> addVaccineCount(@RequestBody @Valid VaccineInventory vinv,@RequestBody @Valid Vaccine vaccine, @PathVariable Integer count) {
+
+		VaccineInventory vaccineinventory = vaccineInventoryService.addVaccineCount(count,vaccine, count);
+
+		return new ResponseEntity<VaccineInventory>(vaccineinventory, HttpStatus.OK);
+
+	}
+
+	@PutMapping("/updateVaccineInventory/{inventoryId}")
+	public ResponseEntity<VaccineInventory> updateVaccineInventory(@RequestBody @Valid VaccineInventory vinv,@PathVariable Integer inventoryId){
+		VaccineInventory vaccineinventory = vaccineInventoryService.updateInventory(inventoryId, vinv);
+		return new ResponseEntity<VaccineInventory>(vaccineinventory, HttpStatus.OK);
+
+	}
+
+	@DeleteMapping("/deleteInv/{inventoryId}")
+	public ResponseEntity<Boolean> deleteVaccineInventory(@PathVariable Integer inventoryId) {
+
+		boolean flag = vaccineInventoryService.deleteInventory(inventoryId);
+
+		return new ResponseEntity<Boolean>(flag,HttpStatus.ACCEPTED);
+
+	}
+
+	@GetMapping("/getVaccinvByDate/{date}")
+	public ResponseEntity<List<VaccineInventory>> getVaccineInventoryByDate(@PathVariable LocalDate date) {
+
+		List<VaccineInventory> invlist = vaccineInventoryService.getInventoryByDate(date);
+		
+		return new ResponseEntity<List<VaccineInventory>>(invlist, HttpStatus.OK);
+
+	}
+
+//	@GetMapping("/getinvByVaccname")
+//	public ResponseEntity<VaccineInventory> getVaccineInventoryByVaccine(@RequestBody Vaccine vc,
+//			@RequestParam(value = "key", required = false) String key) throws VaccineException, LoginException {
+//
+//		VaccineInventory invList = vaccineInventoryService.ge
+//
+//
+//		return new ResponseEntity<VaccineInventory>(invList, HttpStatus.OK);
+//
+//	}
+//	
 	
 	
 	
