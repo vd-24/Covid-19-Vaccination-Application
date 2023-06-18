@@ -2,16 +2,7 @@ package com.covid19.Enums;
 
 public enum IrisScan {
 	
-    Present("Present"),
-    Absent("Absent") ;
+    Present,
+    Absent
 
-   private String iris;
-
-private IrisScan(String iris) {
-	this.iris = iris;
-}
-
-public String getIris() {
-	return iris;
-}
 }

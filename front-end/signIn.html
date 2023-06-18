@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="">
+
+        <input id="username" type="text" placeholder="UserName/Email">
+        <input id="password" type="password" placeholder="password">
+        
+    </form>
+        <button id ="submit" onclick="myfun()">SignIn</button>
+</body>
+</html>
+<script>
+
+function myfun() {
+  let name = document.querySelector("#username").value;
+  let password = document.querySelector("#password").value;
+
+  var cred = btoa(name + ':' + password);
+  console.log(cred);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", "Basic " + cred);
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  fetch("http://localhost:8080/admin/signIn", requestOptions)
+    .then(response => {
+     
+      if (response.headers.has('Authorization')) {
+        var token = response.headers.get('Authorization');
+        
+        if(token != null){
+          localStorage.setItem('jwtToken', token);
+          
+        }else{
+          alert("Your Creditionals are not correct please check them or signIn again Or Register yourself first");
+        }
+
+        
+      }
+      return response.text();
+    })
+    .then(result => {
+      if(result != null){
+        let user = JSON.parse(result);
+        alert(user.name+" SignIn Succesfully");
+        localStorage.setItem('data',result);
+      }
+    })
+    .catch(error => alert('error', error));
+
+
+   let storedData = localStorage.getItem('data');
+
+
+  
+  var userData = JSON.parse(storedData);
+  
+  
+  var role = userData.role;
+  
+  if(role == "ROLE_ADMIN"){
+    window.location.href = "admin_controller.html";
+  }else{
+    window.location.href = "customer_controller.html";
+  }
+
+  console.log(role);
+}
+
+
+
+
+</script>

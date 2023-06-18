@@ -35,20 +35,31 @@ public class AdharCard {
 	@Column(unique = true)
 	private String adharNo;
 	
-	@NotNull(message = "Fingerprint can be null")
-	@NotEmpty(message = "Fingerprint can't be empty")
-	@NotBlank(message = "Fingerprint can't be blank")
+//	@NotNull(message = "Fingerprint can be null")
+//	@NotEmpty(message = "Fingerprint can't be empty")
+//	@NotBlank(message = "Fingerprint can't be blank")
 	@Enumerated(EnumType.STRING)
 	private Fingerprint fingerprints;
 	
 	
-	@NotNull(message = "irisscan can be null")
-	@NotEmpty(message = "irisscan can't be empty")
-	@NotBlank(message = "irisscan can't be blank")
+//	@NotNull(message = "irisscan can be null")
+//	@NotEmpty(message = "irisscan can't be empty")
+//	@NotBlank(message = "irisscan can't be blank")
 	@Enumerated(EnumType.STRING)
 	private IrisScan irisscan;
 	
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "adharCard")
 	@JsonIgnore
 	private IdCard idCard;
+
+/*
+
+"adharCard":{
+"adharNo" : "123456789101",
+"fingerprints":"Present",
+"irisscan":"Present"
+}
+
+* */
+
 }

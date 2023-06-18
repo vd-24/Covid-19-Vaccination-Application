@@ -12,4 +12,5 @@ public interface VaccineRepository extends JpaRepository<Vaccine, Integer>,Pagin
 
 	 	@Query("SELECT v FROM Vaccine v WHERE v.vaccineName = ?1")
 	    Vaccine findByName(String vaccineName);
+
 }

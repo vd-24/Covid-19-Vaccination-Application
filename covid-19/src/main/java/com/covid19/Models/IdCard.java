@@ -52,7 +52,7 @@ public class IdCard {
 	private LocalDate DateOfBirth ;
 	
 	@NotNull(message = "Gender can't be null")
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
 	@NotEmpty(message =  "Address is mandatory")
@@ -81,6 +81,23 @@ public class IdCard {
 	private Member member;
 }
 
+
+/*
+*
+{
+  "name": "Rohit",
+  "email": "Rohit@gmail.com",
+  "password": "12345",
+  "role": "ROLE_ADMIN",
+  "dateOfBirth": "1990-01-01",
+  "gender": "Male",
+  "address": "123 Street",
+  "city": "New York",
+  "pincode": "12345",
+  "state": "New York"
+}
+
+* */
 
 
 

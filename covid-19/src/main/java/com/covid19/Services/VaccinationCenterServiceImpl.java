@@ -17,6 +17,7 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 	VaccinationCenterRepository vaccinationCenterRepo;
 	
 	@Override
+
 	public List<VaccinationCenter> getAllVaccinationCenters() {
 		List<VaccinationCenter> list = vaccinationCenterRepo.findAll();
 		if(list.isEmpty()) throw new VaccinationCenterException("No Vaccination Center Found");
@@ -24,6 +25,7 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 	}
 
 	@Override
+
 	public VaccinationCenter getVaccinationCenterById(Integer centerId) {
 		Optional<VaccinationCenter> opt = vaccinationCenterRepo.findById(centerId);
 		if(opt.isEmpty()) throw new VaccinationCenterException("No Vaccination Center Found");

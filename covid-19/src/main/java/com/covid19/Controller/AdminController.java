@@ -3,6 +3,7 @@ package com.covid19.Controller;
 import java.time.LocalDate;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.covid19.Exception.MemberException;
 import com.covid19.Models.IdCard;
@@ -48,7 +50,7 @@ public class AdminController {
 
     @Autowired
     MemberService memberService;
-    
+
     @Autowired
     VaccinationCenterService centerService;
     
@@ -67,14 +69,15 @@ public class AdminController {
     
 //-----------Sign In ------------
     
+
     @GetMapping("/signIn")
-    public ResponseEntity<String> getLoggedInCustomerDetailsHandler(Authentication auth){
+    public ResponseEntity<IdCard> getLoggedInCustomerDetailsHandler(Authentication auth){
 
         System.out.println(auth); // this Authentication object having Principle object details
 
         IdCard customer= idCardService.getMemberByEmail(auth.getName());
 
-        return new ResponseEntity<>(customer.getEmail()+"Logged In Successfully", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/hello")
@@ -373,7 +376,5 @@ public class AdminController {
 //
 //	}
 //	
-	
-	
-	
+
 }

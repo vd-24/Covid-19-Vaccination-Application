@@ -45,7 +45,8 @@ public class IdCardServiceImpl implements IdCardService{
 
     @Override
     public IdCard registerNewMember(IdCard member) {
-        memberRepository.save(member.getMember());
+//        memberRepository.save(member.getMember());
+//
        IdCard member1 =  idCardRepository.save(member);
 
         return member1;

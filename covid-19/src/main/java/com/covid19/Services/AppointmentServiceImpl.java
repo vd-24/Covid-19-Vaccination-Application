@@ -45,6 +45,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 
 	@Override
+
 	public Appointment addAppointment(Integer memberId , Appointment appointment,Integer vaccinationCenterId) {
 		Optional<Member> mem = memberRepo.findById(memberId);
 		Optional<VaccinationCenter> cen = center.findById(vaccinationCenterId);

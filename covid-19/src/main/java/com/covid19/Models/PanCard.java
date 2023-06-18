@@ -38,4 +38,15 @@ public class PanCard {
 	@OneToOne(cascade = CascadeType.ALL,mappedBy = "panCard")
 	@JsonIgnore
 	private IdCard idCard;
+
+/*
+"panCard":{
+
+"panNo":"ABC1234567"
+
+}
+
+
+* */
+
 }
