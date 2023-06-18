@@ -9,6 +9,8 @@ import com.covid19.Models.Vaccine;
 
 @Repository
 public interface VaccineRepository extends JpaRepository<Vaccine, Integer>,PagingAndSortingRepository<Vaccine, Integer>{
-    @Query("SELECT v FROM Vaccine v WHERE v.vaccineName = ?1")
-    Vaccine findByName(String vaccineName);
+
+	 	@Query("SELECT v FROM Vaccine v WHERE v.vaccineName = ?1")
+	    Vaccine findByName(String vaccineName);
+
 }

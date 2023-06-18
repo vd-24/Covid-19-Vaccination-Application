@@ -17,14 +17,16 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 	VaccinationCenterRepository vaccinationCenterRepo;
 	
 	@Override
-	public List<VaccinationCenter> getAllVaccinationCenters() throws VaccinationCenterException {
+
+	public List<VaccinationCenter> getAllVaccinationCenters() {
 		List<VaccinationCenter> list = vaccinationCenterRepo.findAll();
 		if(list.isEmpty()) throw new VaccinationCenterException("No Vaccination Center Found");
 		return list;
 	}
 
 	@Override
-	public VaccinationCenter getVaccinationCenterById(Integer centerId) throws VaccinationCenterException {
+
+	public VaccinationCenter getVaccinationCenterById(Integer centerId) {
 		Optional<VaccinationCenter> opt = vaccinationCenterRepo.findById(centerId);
 		if(opt.isEmpty()) throw new VaccinationCenterException("No Vaccination Center Found");
 		
@@ -32,7 +34,7 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 	}
 
 	@Override
-	public VaccinationCenter addVaccinationCenter(VaccinationCenter vaccinationCenter) throws VaccinationCenterException {
+	public VaccinationCenter addVaccinationCenter(VaccinationCenter vaccinationCenter) {
 		Optional<VaccinationCenter> opt = vaccinationCenterRepo.findById(vaccinationCenter.getCenterCode());
 		if(opt.isPresent()) throw new VaccinationCenterException("Vaccination Center Already Present");
 		
@@ -40,7 +42,7 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 	}
 
 	@Override
-	public VaccinationCenter updateVaccinationCenter(Integer centerId,VaccinationCenter vaccinationCenter) throws VaccinationCenterException {
+	public VaccinationCenter updateVaccinationCenter(Integer centerId,VaccinationCenter vaccinationCenter) {
 		Optional<VaccinationCenter> opt = vaccinationCenterRepo.findById(centerId);
 		if(opt.isEmpty()) throw new VaccinationCenterException("No Vaccination Center Found");
 		
@@ -52,7 +54,7 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 	}
 
 	@Override
-	public boolean deleteVaccineCenter(Integer centerId) throws VaccinationCenterException {
+	public boolean deleteVaccineCenter(Integer centerId) {
 		Optional<VaccinationCenter> opt = vaccinationCenterRepo.findById(centerId);
 		if(opt.isEmpty()) throw new VaccinationCenterException("No Vaccination Center Found");
 		
