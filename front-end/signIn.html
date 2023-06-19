@@ -71,9 +71,16 @@ function myfun() {
   var role = userData.role;
   
   if(role == "ROLE_ADMIN"){
-    window.location.href = "admin_controller.html";
+    // window.location.href = "admin_controller.html";
+    setTimeout(function() {
+  window.location.href = "admin_controller.html";
+}, 1000);
+
   }else{
-    window.location.href = "customer_controller.html";
+    setTimeout(function() {
+  window.location.href = "customer_controller.html";
+}, 1000);
+    // window.location.href = "customer_controller.html";
   }
 
   console.log(role);

@@ -1,7 +1,6 @@
 package com.covid19.Controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +39,11 @@ public class UserController {
 	private VaccinationCenterService centerService;
 
 	@Autowired
-	private IdCardService idCardService;
+	private MemberService idCardService;
+  
+  @Autowired
+	private IdCardService iCardService;
+
 
 	@Autowired
 	private AppointmentService appointmentService;
@@ -111,6 +114,7 @@ public class UserController {
 	}
 
 	// user can perform vaccine registration crud operation
+
 
 	@PostMapping("/addvaccineRegistration")
 	public ResponseEntity<VaccineRegistration> addVaccineRegistrationr(@RequestBody @Valid VaccineRegistration regs) {
@@ -196,7 +200,6 @@ public class UserController {
 	// user vaccine center access
 	@GetMapping("/getVaccineCenter")
 	public ResponseEntity<List<VaccinationCenter>> getAllVaccineCenters() {
-
 		List<VaccinationCenter> allvaclist = centerService.getAllVaccinationCenters();
 
 		return new ResponseEntity<List<VaccinationCenter>>(allvaclist,HttpStatus.OK);
@@ -204,7 +207,6 @@ public class UserController {
 
 	@GetMapping("/getVaccineCenter/{centerId}")
 	public ResponseEntity<VaccinationCenter> getVaccineCenter(@PathVariable Integer centerId) {
-
 		VaccinationCenter vc = centerService.getVaccinationCenterById(centerId);
 
 
@@ -213,17 +215,14 @@ public class UserController {
 
 	@GetMapping("/panNo")
 	public ResponseEntity<IdCard> getPanCardByNumber(@RequestParam String panNo) {
-
-		IdCard idcard = idCardService.getPanCardByNumber(panNo);
-
+		IdCard idcard = iCardService.getPanCardByNumber(panNo);
 		return new ResponseEntity<IdCard>(idcard, HttpStatus.OK);
 
 	}
 
 	@GetMapping("/adharNo")
 	public ResponseEntity<IdCard> getAdharCardByNo(@RequestParam String adharNo) {
-
-		IdCard idcard = idCardService.getAdharCardByNo(adharNo);
+		IdCard idcard = iCardService.getAdharCardByNo(adharNo);
 
 		return new ResponseEntity<IdCard>(idcard, HttpStatus.OK);
 
@@ -232,11 +231,12 @@ public class UserController {
 	@PostMapping("/idcard")
 	public ResponseEntity<IdCard> addIdCard(@RequestBody @Valid IdCard idCard) {
 
-		IdCard idcard = idCardService.addIdCard(idCard);
+		IdCard idcard = iCardService.addIdCard(idCard);
 
 		return new ResponseEntity<IdCard>(idcard, HttpStatus.CREATED);
 
 	}
+
 
 	// Appointment method
 
@@ -260,6 +260,7 @@ public class UserController {
 
 	@PostMapping("/appointments/{memberId}/{centerId}")
 	public ResponseEntity<Appointment> addAppoinment(@RequestBody @Valid Appointment app,@PathVariable Integer memberId, @PathVariable Integer centerId) {
+
 
 		Appointment appointment = appointmentService.addAppointment(memberId, app, centerId);
 

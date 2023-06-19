@@ -27,7 +27,9 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	VaccinationCenterRepository centerRepo;
 	
 	@Override
+
 	public VaccineInventory addVaccineCount(Integer inId, Vaccine v, Integer qty) {
+
 		Optional<VaccineInventory> opt = inventoryRepo.findById(inId);
 		if(opt.isEmpty()) throw new VaccineInventoryException("No VaccineInventory found");
 		
@@ -50,6 +52,7 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
+
 	public List<VaccineInventory> getInventoryByDate(LocalDate date) {
 		List<VaccineInventory> list = inventoryRepo.findByDate(date);
 		if(list.isEmpty())throw new VaccineInventoryException("No Vaccine Inventory Present");
@@ -64,6 +67,7 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
+
 	public VaccineInventory getInventoryByVaccinationCenter(Integer id) {
 		Optional<VaccinationCenter> opt = centerRepo.findById(id);
 		if(opt.isEmpty()) throw new VaccinationCenterException("No Center Present of This id");
@@ -77,6 +81,7 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
+
 	public List<VaccineCount> getVaccineCountByCenter(Integer centerId) {
 		Optional<VaccinationCenter> opt = centerRepo.findById(centerId);
 		if(opt.isEmpty()) throw new VaccinationCenterException("No Center Present of This id");
@@ -84,8 +89,6 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 		VaccinationCenter center = opt.get();
 		
 		List<VaccineCount> list = center.getInventory().getVaccineCount();
-		
-		
 		return list;
 	}
 
@@ -97,21 +100,23 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
+
 	public VaccineInventory updateInventory(Integer inventoryId, VaccineInventory inventory) {
 		Optional<VaccineInventory> opt = inventoryRepo.findById(inventoryId);
 		if(opt.isEmpty()) throw new VaccineInventoryException("No Inventory Found By This ID");
 		
 		VaccineInventory oldInventory = opt.get();
 		oldInventory.setDate(inventory.getDate());
-		
 		List<VaccineCount> list = oldInventory.getVaccineCount();
 		if(!list.isEmpty()) {
 			oldInventory.getVaccineCount().addAll(list);
+
 		}
 		return oldInventory;
 	}
 
 	@Override
+
 	public boolean deleteInventory(Integer id) {
 		Optional<VaccineInventory> opt = inventoryRepo.findById(id);
 		if(opt.isEmpty()) throw new VaccineInventoryException("No Inventory Found");
