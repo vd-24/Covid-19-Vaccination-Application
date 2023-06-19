@@ -68,7 +68,7 @@ First clone the project and let STS4 build its dependecies. Maven --> Update Pro
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/swapnil0076/swift-book-7091.git
+   git clone https://github.com/vd-24/ruthless-store-61
    ```
 
 
