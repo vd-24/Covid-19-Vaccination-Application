@@ -1,8 +1,6 @@
 package com.covid19.Controller;
 
 import java.util.List;
-
-import com.covid19.Exception.VaccinationCenterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +40,10 @@ public class UserController {
 
 	@Autowired
 	private MemberService idCardService;
+  
+  @Autowired
+	private IdCardService iCardService;
+
 
 	@Autowired
 	private AppointmentService appointmentService;
@@ -113,7 +115,8 @@ public class UserController {
 
 	// user can perform vaccine registration crud operation
 
-	@PostMapping("/addVaccineRegistration")
+
+	@PostMapping("/addvaccineRegistration")
 	public ResponseEntity<VaccineRegistration> addVaccineRegistrationr(@RequestBody @Valid VaccineRegistration regs) {
 		VaccineRegistration addVaccineRegistration = vrService.addVaccineRegistration(regs);
 		return new ResponseEntity<VaccineRegistration>(addVaccineRegistration, HttpStatus.OK);
@@ -196,16 +199,14 @@ public class UserController {
 
 	// user vaccine center access
 	@GetMapping("/getVaccineCenter")
-	public ResponseEntity<List<VaccinationCenter>> getAllVaccineCenters() throws VaccinationCenterException {
-
+	public ResponseEntity<List<VaccinationCenter>> getAllVaccineCenters() {
 		List<VaccinationCenter> allvaclist = centerService.getAllVaccinationCenters();
 
 		return new ResponseEntity<List<VaccinationCenter>>(allvaclist,HttpStatus.OK);
 	}
 
 	@GetMapping("/getVaccineCenter/{centerId}")
-	public ResponseEntity<VaccinationCenter> getVaccineCenter(@PathVariable Integer centerId) throws VaccinationCenterException {
-
+	public ResponseEntity<VaccinationCenter> getVaccineCenter(@PathVariable Integer centerId) {
 		VaccinationCenter vc = centerService.getVaccinationCenterById(centerId);
 
 
@@ -214,30 +215,28 @@ public class UserController {
 
 	@GetMapping("/panNo")
 	public ResponseEntity<IdCard> getPanCardByNumber(@RequestParam String panNo) {
-
-		IdCard idcard = idCardService.findMemberByPanCard(panNo);
-
+		IdCard idcard = iCardService.getPanCardByNumber(panNo);
 		return new ResponseEntity<IdCard>(idcard, HttpStatus.OK);
 
 	}
 
 	@GetMapping("/adharNo")
 	public ResponseEntity<IdCard> getAdharCardByNo(@RequestParam String adharNo) {
-
-		IdCard idcard = idCardService.findMemberByPanCard(adharNo);
+		IdCard idcard = iCardService.getAdharCardByNo(adharNo);
 
 		return new ResponseEntity<IdCard>(idcard, HttpStatus.OK);
 
 	}
 
-//	@PostMapping("/idcard")
-//	public ResponseEntity<IdCard> addIdCard(@RequestBody @Valid IdCard idCard) {
-//
-////		IdCard idcard = idCardService.(idCard);
-//
-////		return new ResponseEntity<IdCard>(idcard, HttpStatus.CREATED);
-//
-//	}
+	@PostMapping("/idcard")
+	public ResponseEntity<IdCard> addIdCard(@RequestBody @Valid IdCard idCard) {
+
+		IdCard idcard = iCardService.addIdCard(idCard);
+
+		return new ResponseEntity<IdCard>(idcard, HttpStatus.CREATED);
+
+	}
+
 
 	// Appointment method
 
@@ -259,8 +258,9 @@ public class UserController {
 
 	}
 
-	@PostMapping("/appointments/{centerId}")
-	public ResponseEntity<Appointment> addAppoinment(@RequestBody @Valid Appointment app,@PathVariable Integer memberId, @PathVariable Integer centerId) throws VaccinationCenterException {
+	@PostMapping("/appointments/{memberId}/{centerId}")
+	public ResponseEntity<Appointment> addAppoinment(@RequestBody @Valid Appointment app,@PathVariable Integer memberId, @PathVariable Integer centerId) {
+
 
 		Appointment appointment = appointmentService.addAppointment(memberId, app, centerId);
 

@@ -1,6 +1,8 @@
 package com.covid19.Security;
 
 import jakarta.servlet.http.HttpServletRequest;
+
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -21,6 +23,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Arrays;
 import java.util.Collections;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebMvc
@@ -80,6 +84,16 @@ public class AppConfig {
 
         return new BCryptPasswordEncoder();
 
+    }
+    
+    @Bean
+    public DataSource getDataSource() {
+        return DataSourceBuilder.create()
+          .driverClassName("com.mysql.cj.jdbc.Driver")
+          .url("jdbc:mysql://localhost:3306/db1")
+          .username("root")
+          .password("root")
+          .build();	
     }
 
 }

@@ -45,10 +45,11 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 
 	@Override
-	public Appointment addAppointment(Integer memberId , Appointment appointment,Integer vaccinationCenterId) throws VaccinationCenterException {
+
+	public Appointment addAppointment(Integer memberId , Appointment appointment,Integer vaccinationCenterId) {
 		Optional<Member> mem = memberRepo.findById(memberId);
 		Optional<VaccinationCenter> cen = center.findById(vaccinationCenterId);
-		if(cen.isEmpty())	throw new VaccinationCenterException("No Center Present Of This Id");
+		if(cen.isEmpty()) throw new VaccinationCenterException("No Center Present Of This Id");
 		if(mem.isEmpty()) throw new MemberException("No Member Found Of This Id");
 		
 		if(mem.get().isDose1() == true && mem.get().isDose2()==true) {

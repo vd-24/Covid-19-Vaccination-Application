@@ -23,31 +23,33 @@ public class VaccineRegistrationServiceImpl implements VaccineRegistrationServic
 
 	@Override
 	public List<VaccineRegistration> allVaccineRegistrations() {
-		return vaccineRegistrationRepository.findAll();
+		List<VaccineRegistration> list = vaccineRegistrationRepository.findAll();
+		if(list.isEmpty()) throw new VaccineRegistrationException("No Vaccine Registered");
+		return list;
 	}
 
 	@Override
 	public VaccineRegistration getVaccineRegistration(String mobileNumber) {
-		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileno(mobileNumber);
+		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileNumber(mobileNumber);
+		if(vaccineRegistration == null) throw new VaccineRegistrationException("No Vaccine Registered with this number");
 		return vaccineRegistration ;
 	}
 
 	@Override
 	public List<Member> getAllMember(String mobileNumber) {
-		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileno(mobileNumber);
+		VaccineRegistration vaccineRegistration = vaccineRegistrationRepository.findByMobileNumber(mobileNumber);
+		if(vaccineRegistration.getMembers().isEmpty()) throw new VaccineRegistrationException("No Member Registered");
 		return vaccineRegistration.getMembers();
 	}
 
 	@Override
 	public VaccineRegistration addVaccineRegistration(VaccineRegistration vaccineRegistration) {
-		
 		return vaccineRegistrationRepository.save(vaccineRegistration);
 	}
 
 	@Override
 	public VaccineRegistration updateVaccineRegistration(VaccineRegistration vaccineRegistration) {
-		
-		return null;
+		return vaccineRegistrationRepository.save(vaccineRegistration);
 	}
 
 	@Override

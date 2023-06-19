@@ -8,5 +8,7 @@ import com.covid19.Models.VaccineRegistration;
 
 @Repository
 public interface VaccineRegistrationRepository extends JpaRepository<VaccineRegistration, Integer>,PagingAndSortingRepository<VaccineRegistration, Integer>{
-    public  VaccineRegistration findByMobileno(String mobileNumber);
+
+	public  VaccineRegistration findByMobileNumber(String mobileNumber);
+
 }
