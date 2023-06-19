@@ -35,7 +35,7 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 		
 		VaccineInventory inventory = opt.get();
 		
-		List<VaccineCount> list = inventory.getVaccineCount();
+		List<VaccineCount> list = inventory.getVaccineCounts();
 		if(list.isEmpty()) throw new VaccineCountException("No Vaccine Present");
 		
 		VaccineCount vc = null;
@@ -88,7 +88,7 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 		
 		VaccinationCenter center = opt.get();
 		
-		List<VaccineCount> list = center.getInventory().getVaccineCount();
+		List<VaccineCount> list = center.getInventory().getVaccineCounts();
 		return list;
 	}
 
@@ -107,9 +107,9 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 		
 		VaccineInventory oldInventory = opt.get();
 		oldInventory.setDate(inventory.getDate());
-		List<VaccineCount> list = oldInventory.getVaccineCount();
+		List<VaccineCount> list = oldInventory.getVaccineCounts();
 		if(!list.isEmpty()) {
-			oldInventory.getVaccineCount().addAll(list);
+			oldInventory.getVaccineCounts().addAll(list);
 
 		}
 		return oldInventory;

@@ -61,9 +61,10 @@ public class AppConfig {
                 }).authorizeHttpRequests(auth ->{
                     auth
                             .requestMatchers("/admin/register").permitAll()
+                            .requestMatchers("/admin/signIn").permitAll()
                             .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
                             .requestMatchers("/admin/**","/user/**").hasRole("ADMIN")
-                            .requestMatchers("/user/addVaccineRegistration","/user/vaccines","/user/getVaccineCenter","/user/appointments/{centerId}").hasRole("MEMBER")
+                            .requestMatchers("/user/addVaccineRegistration","/user/vaccines","/user/getVaccineCenter","/user/appointments/**").hasRole("MEMBER")
                             .requestMatchers("/swagger-ui*/**","/v3/api-docs/**","/admin/**","/user/**").permitAll()
                             .anyRequest().authenticated();
                 })

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.covid19.Models.Appointment;
@@ -39,9 +40,6 @@ public class UserController {
 	private VaccinationCenterService centerService;
 
 	@Autowired
-	private MemberService idCardService;
-  
-  @Autowired
 	private IdCardService iCardService;
 
 
@@ -59,6 +57,16 @@ public class UserController {
 //
 //	}
 
+	 @GetMapping("/signIn")
+	    public ResponseEntity<IdCard> getLoggedInCustomerDetailsHandler(Authentication auth){
+
+	        System.out.println(auth); // this Authentication object having Principle object details
+
+	        IdCard customer= iCardService.getMemberByEmail(auth.getName());
+
+	        return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
+	    }
+	
 	@GetMapping("/members/{memberId}")
 	public ResponseEntity<IdCard> getMemberById(@PathVariable Integer memberId) {
 

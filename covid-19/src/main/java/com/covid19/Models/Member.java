@@ -35,7 +35,7 @@ public class Member {
 	@OneToOne(mappedBy = "member" , cascade = CascadeType.ALL)
 	private IdCard idcard;
 
-
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	private Appointment appointment;
 

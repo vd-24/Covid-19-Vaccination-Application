@@ -64,9 +64,9 @@ public class AppointmentServiceImpl implements AppointmentService{
 			mem.get().setDose2date(appointment.getDateOfBooking());
 		}
 		
-		
-		Optional<Appointment> opt = appointmentRepo.findById(appointment.getBookingId());
-		if(opt.isPresent()) throw new AppointmentException("Appointment Already Present");
+//		
+//		Optional<Appointment> opt = appointmentRepo.findById(appointment.getBookingId());
+//		if(opt.isPresent()) throw new AppointmentException("Appointment Already Present");
 		
 		appointment.setMember(mem.get());
 		mem.get().setAppointment(appointment);
