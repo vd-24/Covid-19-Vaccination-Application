@@ -1,7 +1,7 @@
 <a name="readme-top"></a> 
 
 
-  <h1 align="center">Health Connect</h1>
+  <h1 align="center">COVID-19</h1>
 <div  align="center" ><img src = "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2021/05/covidvaccinetechnology-1620879627.jpg"/></div>
 
 
