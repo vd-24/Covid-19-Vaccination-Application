@@ -6,7 +6,7 @@
 
 
   <h3 align="center">Covid-19 Vaccination Registration Using REST Api</h3>
-<p align="center">We tried to mimic real world Covid-19 module. And designe according to that.</p>
+<p align="center">We tried to mimic real world Covid-19 module. And design according to that.</p>
 
 </br>
 <h1>About the Project</h1>
