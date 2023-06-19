@@ -2,7 +2,7 @@
 
 
   <h1 align="center">Health Connect</h1>
-<div  align="center" ><img src = "https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize.indiatvnews.com%2Fen%2Fresize%2Fnewbucket%2F1200_-%2F2021%2F05%2Fcovidvaccinetechnology-1620879627.jpg&tbnid=a7OWo_SB8In4GM&vet=12ahUKEwjV9KbfxM7_AhWnu2MGHaDTDUIQMygAegUIARCKAQ..i&imgrefurl=https%3A%2F%2Fwww.indiatvnews.com%2Fnews%2Findia%2Frent-agreement-utility-bills-added-to-list-of-documents-for-vaccination-in-uttar-pradesh-704296&docid=pKU_GZWV3QPSKM&w=1200&h=800&q=covid%20vaccination%20&ved=2ahUKEwjV9KbfxM7_AhWnu2MGHaDTDUIQMygAegUIARCKAQ"/></div>
+<div  align="center" ><img src = "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2021/05/covidvaccinetechnology-1620879627.jpg"/></div>
 
 
   <h3 align="center">Covid-19 Vaccination Registration Using REST Api</h3>
