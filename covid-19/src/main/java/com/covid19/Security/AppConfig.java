@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,11 +16,14 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
+@EnableWebMvc
 public class AppConfig {
 
     @Bean
@@ -53,7 +57,10 @@ public class AppConfig {
                 }).authorizeHttpRequests(auth ->{
                     auth
                             .requestMatchers("/admin/register").permitAll()
-                            .requestMatchers("/admin/**").hasRole("ADMIN")
+                            .requestMatchers("/swagger-ui*/**","/v3/api-docs/**").permitAll()
+                            .requestMatchers("/admin/**","/user/**").hasRole("ADMIN")
+                            .requestMatchers("/user/addVaccineRegistration","/user/vaccines","/user/getVaccineCenter","/user/appointments/{centerId}").hasRole("MEMBER")
+                            .requestMatchers("/swagger-ui*/**","/v3/api-docs/**","/admin/**","/user/**").permitAll()
                             .anyRequest().authenticated();
                 })
                 .csrf(csrf ->csrf.disable())

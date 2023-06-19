@@ -3,6 +3,7 @@ package com.covid19.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,10 +31,13 @@ public class VaccinationCenter {
 	private String pincode;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)   
-	@NotNull
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonProperty(access =  JsonProperty.Access.WRITE_ONLY)
 	private VaccineInventory inventory;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Appointment appointment;
+
+
+
 }
